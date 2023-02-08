@@ -211,7 +211,39 @@ class LinkedList{
     }
 
     removeAt(index){
-        return;
+        if(this.#headNode === null){
+            return;
+        }
+
+        if(index == 0){
+            this.#headNode = this.#headNode.getNextNode();
+            return;
+        }
+
+        if(index == this.#size){
+            this.pop();
+            return;
+        }
+
+        if(index > this.#size){
+            return null;
+        }
+
+        let tempIndex = index;
+        let actualNode = this.#headNode;
+        let beforeLastNode;
+        while(tempIndex != 0 && actualNode.getNextNode() != null){
+            if(tempIndex == 1){
+                beforeLastNode = actualNode;   
+            }
+            actualNode = actualNode.getNextNode();
+            tempIndex--;
+        }
+        if(tempIndex != 0) return null;
+
+        beforeLastNode.setNextNode(actualNode.getNextNode());
+        
+        this.#size--;
     }
 }
 
@@ -334,4 +366,28 @@ console.log(`lnlist.insertAt(54, 6) empty list ${emptylist.insertAt(node, 5)}`);
 emptylist.toString();
 node = new Node(54);
 console.log(`lnlist.insertAt(54, 0) empty list ${emptylist.insertAt(node, 0)}`);
+emptylist.toString();
+
+console.log()
+console.log()
+lnlist.toString();
+console.log(`lnlist.removeAt(2) ${lnlist.removeAt(2)}`);
+lnlist.toString();
+console.log(`lnlist.removeAt(0), first element ${lnlist.removeAt(0)}`);
+console.log(`lnlist.removeAt(0), first element ${lnlist.removeAt(0)}`);
+console.log(`lnlist.removeAt(0), first element ${lnlist.removeAt(0)}`);
+console.log(`lnlist.removeAt(0), first element ${lnlist.removeAt(0)}`);
+lnlist.toString();
+console.log(`lnlist.removeAt(3), last element ${lnlist.removeAt(3)}`);
+lnlist.toString();
+console.log(`lnlist.removeAt(3), beyond last element ${lnlist.removeAt(3)}`);
+lnlist.toString();
+console.log(`lnlist.removeAt(1) ${lnlist.removeAt(1)}`);
+lnlist.toString();
+
+console.log()
+console.log(`removeAt(0) ${emptylist.removeAt(0)}`);
+console.log(`empty list removeAt(0) ${emptylist.removeAt(0)}`);
+emptylist.toString();
+console.log(`empty list removeAt(0) ${emptylist.removeAt(0)}`);
 emptylist.toString();
