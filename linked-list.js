@@ -59,6 +59,7 @@ class LinkedList{
         string = string + `${actualNode.getValue()}`
         string = string + ` ]`
         console.log(string);
+        return string;
     }
 
     size(){
@@ -128,6 +129,45 @@ class LinkedList{
         }
         return false;
     }
+
+    find(value){
+        if(this.#headNode === null){
+            return null;
+        }
+    
+        let actualNode = this.#headNode;
+        let index = 0;
+        while(actualNode.getNextNode() != null){
+            if(actualNode.getValue() === value){
+                return index;
+            }
+            index++;
+            actualNode = actualNode.getNextNode();
+        }
+        if(actualNode.getValue() === value){
+            return index;
+        }
+        return null;
+    }
+    
+    toString(){
+        if(this.#headNode === null){
+            console.log('( null )')
+            return;
+        }
+
+        let actualNode = this.#headNode;
+        let string = ``
+        while(actualNode.getNextNode() != null){
+            string = string + `( ${actualNode.getValue()} ) -> `
+            actualNode = actualNode.getNextNode();
+        }
+
+        string = string + `( ${actualNode.getValue()} ) -> `
+        string = string + `null`
+        console.log(string);
+        return string;
+    }
 }
 
 class Node{
@@ -157,6 +197,7 @@ class Node{
 }
 
 let lnlist = new LinkedList();
+let emptylist = new LinkedList();
 
 let node = new Node(0);
 lnlist.append(node);
@@ -179,28 +220,46 @@ lnlist.prepend(node);
 lnlist.print();
 
 console.log(`size: ${lnlist.size()} === 6?`);
+console.log(`empty list size: ${emptylist.size()} === 0?`);
 
+console.log();
 let x = lnlist.head();
 console.log(`head: ${x}`)
 console.log(`head value: ${x.getValue()} == 9?`);
+console.log(`head value empty list: ${emptylist.head()} == null?`);
 
 x = lnlist.tail();
 console.log(`tail: ${x}`)
 console.log(`tail value: ${x.getValue()} == 3?`);
+console.log(`tail value empty list: ${emptylist.tail()} == null?`);
 
+console.log();
 lnlist.print();
 console.log(`at(index=0): ${lnlist.at(0).getValue()} === 9?`);
 console.log(`at(index=1): ${lnlist.at(1).getValue()} === 4?`);
 console.log(`at(index=4): ${lnlist.at(4).getValue()} === 2?`);
 console.log(`at(index=5): ${lnlist.at(5).getValue()} === 3?`);
+console.log(`at(index=5) empty list: ${emptylist.at(5)} === null`);
 
 console.log();
 lnlist.print();
 console.log(`lnlist.pop().getValue() = ${lnlist.pop().getValue()} === 3?`);
 lnlist.print();
+console.log(`pop empty list: ${emptylist.pop()} === null?`);
 
 console.log();
 console.log(`lnlist.contains(2) = ${lnlist.contains(2)} === true?`);
 console.log(`lnlist.contains(0) = ${lnlist.contains(0)} === true?`);
 console.log(`lnlist.contains(7) = ${lnlist.contains(7)} === false?`);
 console.log(`lnlist.contains(3) = ${lnlist.contains(3)} === false?`);
+console.log(`contains empty list: ${emptylist.contains(7)} === false?`);
+
+console.log();
+console.log(`lnlist.find(2) = ${lnlist.find(2)} === 4?`);
+console.log(`lnlist.find(0) = ${lnlist.find(0)} === 2?`);
+console.log(`lnlist.find(7) = ${lnlist.find(7)} === null?`);
+console.log(`lnlist.find(9) = ${lnlist.find(9)} === 0?`);
+console.log(`find empty list: ${emptylist.find(6)} === null?`);
+
+lnlist.toString();
+emptylist.toString();
