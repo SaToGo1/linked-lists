@@ -18,6 +18,17 @@ class LinkedList{
         actualNode.setNextNode(node);
     }
 
+    prepend(node){
+        if(this.headNode === null){
+            this.headNode = node;
+            return;
+        } 
+        
+        let actualNode = this.headNode;
+        this.headNode = node;
+        node.setNextNode(actualNode);
+    }
+
     print(){
         if(this.headNode === null){
             console.log('[ ]')
@@ -27,28 +38,39 @@ class LinkedList{
         let actualNode = this.headNode;
         let string = `[ `
         while(actualNode.getNextNode() != null){
-            string = string + `${actualNode.value}, `
+            string = string + `${actualNode.getValue()}, `
             actualNode = actualNode.getNextNode();
         }
 
-        string = string + `${actualNode.value}`
+        string = string + `${actualNode.getValue()}`
         string = string + ` ]`
         console.log(string);
     }
 }
 
 class Node{
-    constructor(value=null){
-        this.value = value;
-        this.nextNode = null;
+    #value
+    #nextNode
+    
+    constructor(value=null, nextNode=null){
+        this.#value = value;
+        this.#nextNode = nextNode;
     }
-
+    
     getNextNode(){
-        return this.nextNode;
+        return this.#nextNode;
     }
 
     setNextNode(node){
-        this.nextNode = node;
+        this.#nextNode = node;
+    }
+
+    getValue(){
+        return this.#value;
+    }
+
+    setValue(value){
+        this.#value = value;
     }
 }
 
@@ -65,5 +87,8 @@ lnlist.append(node);
 
 node = new Node(3);
 lnlist.append(node);
+
+node = new Node(4);
+lnlist.prepend(node);
 
 lnlist.print();
