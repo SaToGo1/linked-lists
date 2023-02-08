@@ -82,11 +82,12 @@ class LinkedList{
 
         let tempIndex = index;
         let actualNode = this.#headNode;
-        while(tempIndex != 0){
+        while(tempIndex != 0 && actualNode.getNextNode() != null){
             actualNode = actualNode.getNextNode();
             tempIndex--;
         }
 
+        if(tempIndex != 0) return null;
         return actualNode;
     }
 
@@ -168,6 +169,43 @@ class LinkedList{
         console.log(string);
         return string;
     }
+
+    // insertAt(value, index){
+    //     if(this.#headNode === null){
+    //         return null;
+    //     }
+
+        
+    //     let actualNode = this.#headNode;
+    //     while(tempIndex != 0){
+    //         actualNode = actualNode.getNextNode();
+    //         tempIndex--;
+    //     }
+
+    //     return actualNode;
+
+    //     let tempIndex = index;
+    //     let actualNode = this.#headNode;
+    //     while(actualNode.getNextNode().getNextNode() != null){
+            
+    //         actualNode = actualNode.getNextNode();
+    //         tempIndex--;
+    //     }
+
+    //     let beforeLastNode = actualNode;
+    //     let lastNode = actualNode.getNextNode();
+
+    //     beforeLastNode.setNextNode(null);
+        
+    //     this.#size--;
+    //     this.#tailNode = beforeLastNode;
+
+    //     return lastNode;
+    // }
+
+    removeAt(index){
+        return;
+    }
 }
 
 class Node{
@@ -239,6 +277,7 @@ console.log(`at(index=0): ${lnlist.at(0).getValue()} === 9?`);
 console.log(`at(index=1): ${lnlist.at(1).getValue()} === 4?`);
 console.log(`at(index=4): ${lnlist.at(4).getValue()} === 2?`);
 console.log(`at(index=5): ${lnlist.at(5).getValue()} === 3?`);
+console.log(`at(index=12): ${lnlist.at(12)} === null?`);
 console.log(`at(index=5) empty list: ${emptylist.at(5)} === null`);
 
 console.log();
