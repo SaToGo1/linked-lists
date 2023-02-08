@@ -170,38 +170,45 @@ class LinkedList{
         return string;
     }
 
-    // insertAt(value, index){
-    //     if(this.#headNode === null){
-    //         return null;
-    //     }
+    insertAt(value, index){
+        if(index == 0){
+            console.log(`index = 0`)
+            this.prepend(value);
+            return;
+        }
 
+        if(this.#headNode === null){
+            return;
+        }
+
+        if(index == this.#size){
+            console.log(`index = size`)
+            this.append(value);
+            return;
+        }
+
+        if(index > this.#size){
+            console.log(`index > size`)
+            return null;
+        }
+
+        let tempIndex = index;
+        let actualNode = this.#headNode;
+        let beforeLastNode;
+        while(tempIndex != 0 && actualNode.getNextNode() != null){
+            if(tempIndex == 1){
+                beforeLastNode = actualNode;   
+            }
+            actualNode = actualNode.getNextNode();
+            tempIndex--;
+        }
+        if(tempIndex != 0) return null;
+
+        beforeLastNode.setNextNode(value);
+        value.setNextNode(actualNode);
         
-    //     let actualNode = this.#headNode;
-    //     while(tempIndex != 0){
-    //         actualNode = actualNode.getNextNode();
-    //         tempIndex--;
-    //     }
-
-    //     return actualNode;
-
-    //     let tempIndex = index;
-    //     let actualNode = this.#headNode;
-    //     while(actualNode.getNextNode().getNextNode() != null){
-            
-    //         actualNode = actualNode.getNextNode();
-    //         tempIndex--;
-    //     }
-
-    //     let beforeLastNode = actualNode;
-    //     let lastNode = actualNode.getNextNode();
-
-    //     beforeLastNode.setNextNode(null);
-        
-    //     this.#size--;
-    //     this.#tailNode = beforeLastNode;
-
-    //     return lastNode;
-    // }
+        this.#size++;
+    }
 
     removeAt(index){
         return;
@@ -301,4 +308,30 @@ console.log(`lnlist.find(9) = ${lnlist.find(9)} === 0?`);
 console.log(`find empty list: ${emptylist.find(6)} === null?`);
 
 lnlist.toString();
+emptylist.toString();
+
+console.log()
+lnlist.toString();
+node = new Node(2);
+console.log(`lnlist.insertAt(2, 2) ${lnlist.insertAt(node, 2)}`);
+lnlist.toString();
+node = new Node(25);
+console.log(`lnlist.insertAt(25, 0), first element ${lnlist.insertAt(node, 0)}`);
+lnlist.toString();
+node = new Node(32);
+console.log(`lnlist.insertAt(32, 7), last element ${lnlist.insertAt(node, 7)}`);
+lnlist.toString();
+node = new Node(54);
+console.log(`lnlist.insertAt(54, 9), beyond last element ${lnlist.insertAt(node, 9)}`);
+lnlist.toString();
+node = new Node(54);
+console.log(`lnlist.insertAt(54, 6) ${lnlist.insertAt(node, 6)}`);
+lnlist.toString();
+
+console.log()
+node = new Node(54);
+console.log(`lnlist.insertAt(54, 6) empty list ${emptylist.insertAt(node, 5)}`);
+emptylist.toString();
+node = new Node(54);
+console.log(`lnlist.insertAt(54, 0) empty list ${emptylist.insertAt(node, 0)}`);
 emptylist.toString();
