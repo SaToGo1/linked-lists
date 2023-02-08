@@ -73,6 +73,7 @@ class LinkedList{
         return this.#tailNode;
     }
 
+    //returns the value at index: index;
     at(index){
         if(this.#headNode === null){
             return null;
@@ -88,22 +89,7 @@ class LinkedList{
         return actualNode;
     }
 
-    // pop(){
-    //     if(this.#headNode === null){
-    //         return null;
-    //     }
-
-    //     let actualNode = this.#headNode;
-    //     while(actualNode.getNextNode() != null){
-    //         actualNode = actualNode.getNextNode();
-    //     }
-
-    //     actualNode.setNextNode(node);
-        
-    //     this.#size++
-    //     this.#tailNode = node;
-    // }
-
+    //delete last element from the list and return it;
     pop(){
         if(this.#headNode === null){
             return null;
@@ -123,6 +109,24 @@ class LinkedList{
         this.#tailNode = beforeLastNode;
 
         return lastNode;
+    }
+
+    contains(value){
+        if(this.#headNode === null){
+            return false;
+        }
+
+        let actualNode = this.#headNode;
+        while(actualNode.getNextNode() != null){
+            if(actualNode.getValue() === value){
+                return true;
+            }
+            actualNode = actualNode.getNextNode();
+        }
+        if(actualNode.getValue() === value){
+            return true;
+        }
+        return false;
     }
 }
 
@@ -196,3 +200,7 @@ console.log(`lnlist.pop().getValue() = ${lnlist.pop().getValue()} === 3?`);
 lnlist.print();
 
 console.log();
+console.log(`lnlist.contains(2) = ${lnlist.contains(2)} === true?`);
+console.log(`lnlist.contains(0) = ${lnlist.contains(0)} === true?`);
+console.log(`lnlist.contains(7) = ${lnlist.contains(7)} === false?`);
+console.log(`lnlist.contains(3) = ${lnlist.contains(3)} === false?`);
