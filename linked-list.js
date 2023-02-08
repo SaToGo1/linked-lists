@@ -66,8 +66,26 @@ class LinkedList{
     }
 
     head(){
-        let x = this.#headNode;
-        return x;
+        return this.#headNode;
+    }
+
+    tail(){
+        return this.#tailNode;
+    }
+
+    at(index){
+        if(this.#headNode === null){
+            return null;
+        }
+
+        let tempIndex = index;
+        let actualNode = this.#headNode;
+        while(tempIndex != 0){
+            actualNode = actualNode.getNextNode();
+            tempIndex--;
+        }
+
+        return actualNode;
     }
 }
 
@@ -119,8 +137,18 @@ lnlist.prepend(node);
 
 lnlist.print();
 
-console.log(`size: ${lnlist.size()} === 6`);
+console.log(`size: ${lnlist.size()} === 6?`);
 
 let x = lnlist.head();
 console.log(`head: ${x}`)
-console.log(`head value: ${x.getValue()} == 9`);
+console.log(`head value: ${x.getValue()} == 9?`);
+
+x = lnlist.tail();
+console.log(`tail: ${x}`)
+console.log(`tail value: ${x.getValue()} == 3?`);
+
+lnlist.print();
+console.log(`at(index=0): ${lnlist.at(0).getValue()} === 9?`);
+console.log(`at(index=1): ${lnlist.at(1).getValue()} === 4?`);
+console.log(`at(index=4): ${lnlist.at(4).getValue()} === 2?`);
+console.log(`at(index=5): ${lnlist.at(5).getValue()} === 3?`);
