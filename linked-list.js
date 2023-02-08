@@ -87,6 +87,43 @@ class LinkedList{
 
         return actualNode;
     }
+
+    // pop(){
+    //     if(this.#headNode === null){
+    //         return null;
+    //     }
+
+    //     let actualNode = this.#headNode;
+    //     while(actualNode.getNextNode() != null){
+    //         actualNode = actualNode.getNextNode();
+    //     }
+
+    //     actualNode.setNextNode(node);
+        
+    //     this.#size++
+    //     this.#tailNode = node;
+    // }
+
+    pop(){
+        if(this.#headNode === null){
+            return null;
+        }
+
+        let actualNode = this.#headNode;
+        while(actualNode.getNextNode().getNextNode() != null){
+            actualNode = actualNode.getNextNode();
+        }
+
+        let beforeLastNode = actualNode;
+        let lastNode = actualNode.getNextNode();
+
+        beforeLastNode.setNextNode(null);
+        
+        this.#size--;
+        this.#tailNode = beforeLastNode;
+
+        return lastNode;
+    }
 }
 
 class Node{
@@ -152,3 +189,10 @@ console.log(`at(index=0): ${lnlist.at(0).getValue()} === 9?`);
 console.log(`at(index=1): ${lnlist.at(1).getValue()} === 4?`);
 console.log(`at(index=4): ${lnlist.at(4).getValue()} === 2?`);
 console.log(`at(index=5): ${lnlist.at(5).getValue()} === 3?`);
+
+console.log();
+lnlist.print();
+console.log(`lnlist.pop().getValue() = ${lnlist.pop().getValue()} === 3?`);
+lnlist.print();
+
+console.log();
